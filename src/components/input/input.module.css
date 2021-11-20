@@ -1,0 +1,13 @@
+.input {
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  font-size: 1.8rem;
+  border: none;
+  outline: none;
+}
+
+.input-invalid {
+  background-color: rgb(150, 150, 150);
+}

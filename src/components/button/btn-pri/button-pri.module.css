@@ -1,0 +1,32 @@
+.button {
+  text-align: center;
+  color: white;
+  padding: 5px 0;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  width: 100%;
+  font-size: 1.5rem;
+  cursor: not-allowed;
+}
+
+.btn-valid:hover {
+  color: #aaf;
+  transform: scale(1.1);
+  box-shadow: 5px 5px 5px black;
+}
+
+.btn-valid:active {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 5px black;
+}
+
+.btn-valid {
+  background-color: #00f;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-invalid {
+  background-color: #aaf;
+}
