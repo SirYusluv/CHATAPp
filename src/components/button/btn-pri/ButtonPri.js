@@ -5,6 +5,7 @@ function ButtonPri(props) {
     <input
       type={props.type || "submit"}
       value={props.value}
+      onClick={props.click || null}
       className={[
         styles.button,
         !props.isValid ? styles["btn-invalid"] : styles["btn-valid"],

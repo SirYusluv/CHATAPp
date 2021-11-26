@@ -15,6 +15,7 @@ import useValidation from "../../../hooks/use-validation";
 function Login(props) {
   const emailAddrRef = useRef("");
   const passwdRef = useRef("");
+  const transistionRef = useRef(null);
 
   const [emailIsValid: isValid] = useValidation(
     emailAddrRef,
@@ -39,6 +40,7 @@ function Login(props) {
     <CSSTransition
       in={!props.changeView}
       timeout={200}
+      nodeRef={transistionRef}
       classNames={{
         enter: styles["enter"],
         enterActive: styles["enter-active"],
@@ -47,7 +49,10 @@ function Login(props) {
       mountOnEnter
       unmountOnExit
     >
-      <div className={[styles["container-main"]].join(" ")}>
+      <div
+        className={[styles["container-main"]].join(" ")}
+        ref={transistionRef}
+      >
         <div className={styles["container-sec"]}>
           <Input
             inputPlaceholder={TXT_EMAILADDR}

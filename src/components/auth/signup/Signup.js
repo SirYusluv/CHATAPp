@@ -23,6 +23,7 @@ function Signup(props) {
   const passwdRef = useRef();
   const confirmPasswdRef = useRef();
   const usernameRef = useRef();
+  const transistionRef = useRef(null);
 
   const [emailIsValid: isValid] = useValidation(
     emailAddrRef,
@@ -58,10 +59,39 @@ function Signup(props) {
     props.changeView
   );
 
+  const signupClickHandler = async () => {
+    const username = usernameRef.current.value;
+    const emailAddress = emailAddrRef.current.value;
+    const password = passwdRef.current.value;
+
+    let toSend = {
+      username,
+      emailAddress,
+      password,
+    };
+
+    toSend = JSON.stringify(toSend);
+
+    try {
+      const message = await fetch("http://localhost:8080/auth/signup", {
+        method: "POST",
+        body: toSend,
+        headers: {
+          "Content-Type": "Application/JSON",
+        },
+      });
+
+      console.log((await message.json()).message);
+    } catch (e) {
+      console.log("ERROR: ", e.message);
+    }
+  };
+
   return (
     <CSSTransition
       in={props.changeView}
       timeout={200}
+      nodeRef={transistionRef}
       classNames={{
         enter: styles["enter"],
         enterActive: styles["enter-active"],
@@ -70,7 +100,10 @@ function Signup(props) {
       mountOnEnter
       unmountOnExit
     >
-      <div className={[styles["container-main"]].join(" ")}>
+      <div
+        className={[styles["container-main"]].join(" ")}
+        ref={transistionRef}
+      >
         <div className={styles["container-sec"]}>
           <Input
             inputPlaceholder={TXT_USR_NAME}
@@ -96,7 +129,11 @@ function Signup(props) {
             addedClass="auth-input"
             isValid={cmPassIsValid}
           />
-          <ButtonPri value={TXT_SIGNUP} isValid={emailIsValid && passIsValid} />
+          <ButtonPri
+            value={TXT_SIGNUP}
+            isValid={emailIsValid && passIsValid}
+            click={signupClickHandler}
+          />
         </div>
       </div>
     </CSSTransition>

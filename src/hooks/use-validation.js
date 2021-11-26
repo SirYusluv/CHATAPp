@@ -7,7 +7,7 @@ function isEmail(email) {
 }
 
 // ref, { isEmail, isPassword, isName, isCompare }, isCompare && refToCompareWith, some view might not be active due to CSSTransistion
-function useValidation(reff, config, compareWithRef = null, validate) {
+function useValidation(reff, config, compareWithRef = null, validate = false) {
   const [isValid, setIsValid] = useState(true);
 
   const textChangeListener = useCallback(() => {
