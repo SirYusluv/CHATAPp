@@ -1,4 +1,4 @@
-import Auth from "./UI/Auth";
+import Auth from "./UI/auth/auth";
 
 function App() {
   return <Auth />;

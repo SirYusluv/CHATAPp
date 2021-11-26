@@ -1,10 +1,10 @@
-import Login from "../components/auth/login/Login";
-import Signup from "../components/auth/signup/Signup";
-import { TXT_LOGO } from "../util/config";
+import Login from "../../components/auth/login/Login";
+import Signup from "../../components/auth/signup/Signup";
+import { TXT_LOGO } from "../../util/config";
 
 import styles from "./auth.module.css";
 
-import logo from "../img/logo.png";
+import logo from "../../img/logo.png";
 import { useState } from "react";
 
 function Auth() {
