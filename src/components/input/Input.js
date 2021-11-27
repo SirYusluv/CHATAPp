@@ -5,6 +5,7 @@ const Input = (props) => {
     <input
       placeholder={props.inputPlaceholder}
       ref={props.inputRef}
+      type={props.inputType || "text"}
       className={[
         styles.input,
         props.addedClass || "",

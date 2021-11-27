@@ -1,15 +1,10 @@
 import React from "react";
 import { useRef } from "react";
-
 import { CSSTransition } from "react-transition-group";
-
 import Input from "../../input/Input";
 import ButtonPri from "../../button/btn-pri/ButtonPri";
-
 import styles from "./signup.module.css";
-
 import useValidation from "../../../hooks/use-validation";
-
 import {
   TXT_CONFIRM_PASSWS,
   TXT_EMAILADDR,
@@ -17,6 +12,9 @@ import {
   TXT_SIGNUP,
   TXT_USR_NAME,
 } from "../../../util/config";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleModal } from "../../../store/reducers/modal";
+import { toggleBackdrop } from "../../../store/reducers/backdrop";
 
 function Signup(props) {
   const emailAddrRef = useRef();
@@ -24,6 +22,11 @@ function Signup(props) {
   const confirmPasswdRef = useRef();
   const usernameRef = useRef();
   const transistionRef = useRef(null);
+
+  const showModal = useSelector((state) => state.modal.showModal);
+  const showBackdrop = useSelector((state) => state.backdrop.showBackdrop);
+  const dispatchModal = useSelector();
+  const dispatchBackdrop = useSelector();
 
   const [emailIsValid: isValid] = useValidation(
     emailAddrRef,
@@ -72,19 +75,19 @@ function Signup(props) {
 
     toSend = JSON.stringify(toSend);
 
-    try {
-      const message = await fetch("http://localhost:8080/auth/signup", {
-        method: "POST",
-        body: toSend,
-        headers: {
-          "Content-Type": "Application/JSON",
-        },
-      });
+    // try {
+    //   const message = await fetch("http://localhost:8080/auth/signup", {
+    //     method: "POST",
+    //     body: toSend,
+    //     headers: {
+    //       "Content-Type": "Application/JSON",
+    //     },
+    //   });
 
-      console.log((await message.json()).message);
-    } catch (e) {
-      console.log("ERROR: ", e.message);
-    }
+    //   console.log((await message.json()).message);
+    // } catch (e) {
+    //   console.log("ERROR: ", e.message);
+    // }
   };
 
   return (
@@ -121,12 +124,14 @@ function Signup(props) {
             inputPlaceholder={TXT_PASSWS}
             inputRef={passwdRef}
             addedClass="auth-input"
+            inputType="password"
             isValid={passIsValid}
           />
           <Input
             inputPlaceholder={TXT_CONFIRM_PASSWS}
             inputRef={confirmPasswdRef}
             addedClass="auth-input"
+            inputType="password"
             isValid={cmPassIsValid}
           />
           <ButtonPri

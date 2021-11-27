@@ -3,7 +3,7 @@ import styles from "./button-pri.module.css";
 function ButtonPri(props) {
   return (
     <input
-      type={props.type || "submit"}
+      type={props.btnType || "submit"}
       value={props.value}
       onClick={props.click || null}
       className={[

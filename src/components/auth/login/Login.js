@@ -64,6 +64,7 @@ function Login(props) {
             inputPlaceholder={TXT_PASSWS}
             inputRef={passwdRef}
             addedClass="auth-input"
+            inputType="password"
             isValid={passIsValid}
           />
           <ButtonPri value={TXT_LOGIN} isValid={emailIsValid && passIsValid} />
